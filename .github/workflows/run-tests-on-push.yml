@@ -5,7 +5,7 @@ on: push
 jobs:
   test-gen:
     strategy:
-      matrix: &python-test-matrix
+      matrix:
         runner: [windows-latest, ubuntu-latest]
         python-version: ["3.8"]
     uses: ./.github/workflows/test-generator.yml
