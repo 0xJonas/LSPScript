@@ -1,0 +1,14 @@
+name: Run Tests on Push
+
+on: push
+
+jobs:
+  test-gen:
+    strategy:
+      matrix: &python-test-matrix
+        runner: [windows-latest, ubuntu-latest]
+        python-version: ["3.8"]
+    uses: ./.github/workflows/test-generator.yml
+    with:
+      runner: ${{ matrix.runner }}
+      python-version: ${{ matrix.python-version }}
