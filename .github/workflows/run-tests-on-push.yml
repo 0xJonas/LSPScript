@@ -21,4 +21,4 @@ jobs:
     uses: ./.github/workflows/test-lspscript.yml
     with:
       runner: ${{ matrix.runner }}
-      python-version: ${{ matrix.python-verions }}
+      python-version: ${{ matrix.python-version }}
