@@ -1,4 +1,4 @@
-name: Test Generator
+name: Test LSPScript
 
 on:
   workflow_call:
@@ -13,11 +13,25 @@ on:
         type: string
 
 jobs:
-  test-gen:
+  test-lspscript:
     runs-on: ${{ inputs.runner }}
     steps:
     - name: Check out repository
       uses: actions/checkout@v3
+
+    - name: Setup Node.js/npm
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: npm
+
+    - name: Install npm Dependencies
+      run: npm ci
+      working-directory: mock-server
+
+    - name: Build mock-server
+      run: npm run build
+      working-directory: mock-server
 
     - name: Setup Python ${{ inputs.python-version }}
       uses: actions/setup-python@v4
@@ -31,4 +45,4 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run Unit Tests
-      run: python -m pytest gen/test
+      run: python -m pytest test

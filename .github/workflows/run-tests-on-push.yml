@@ -12,3 +12,13 @@ jobs:
     with:
       runner: ${{ matrix.runner }}
       python-version: ${{ matrix.python-version }}
+
+  test-lspscript:
+    strategy:
+      matrix:
+        runner: [windows-latest, ubuntu-latest]
+        python-version: ["3.8"]
+    uses: ./.github/workflows/test-lspscript.yml
+    with:
+      runner: ${{ matrix.runner }}
+      python-version: ${{ matrix.python-verions }}
