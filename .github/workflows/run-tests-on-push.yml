@@ -13,7 +13,11 @@ jobs:
       runner: ${{ matrix.runner }}
       python-version: ${{ matrix.python-version }}
 
+  check-generator-output:
+    uses: ./.github/workflows/check-generator-output.yml
+
   test-lspscript:
+    needs: check-generator-output
     strategy:
       matrix:
         runner: [windows-latest, ubuntu-latest]
